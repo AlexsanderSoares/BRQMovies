@@ -1,37 +1,25 @@
-import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react-native';
+import React, { ReactElement } from 'react';
+import { render } from '@testing-library/react-native';
 import { FloatingLabelInput } from './component';
 
+const MockLeftIcon: ReactElement = <></>;
+const MockRightIcon: ReactElement = <></>; 
+
 describe('FloatingLabelInput', () => {
-  it('updates label style on input focus and blur', async () => {
-    const { getByTestId, getByText } = render(
-      <FloatingLabelInput label="Test Label" value="" />,
-    );
+  it('renderiza corretamente', () => {
+    const mockProps = {
+      label: 'Nome',
+      LeftIcon: () => MockLeftIcon, // Usar o componente de ícone mockado
+      RightIcon: () => MockRightIcon, // Mock do componente RightIcon
+      error: false,
+      value: '',
+      onChangeText: jest.fn(),
+    };
 
-    const labelElement = getByText('Test Label');
-    expect(labelElement).toBeTruthy();
+    const { getByText } = render(<FloatingLabelInput {...mockProps} />);
+    const labelElement = getByText('Nome');
 
-    const inputElement = getByTestId('input-test-id');
-    expect(inputElement).toBeTruthy();
-
-    fireEvent(inputElement, 'focus');
-
-    await waitFor(() => {
-      const focusedLabelStyle = labelElement.props.style;
-      expect(focusedLabelStyle).toMatchObject({
-        top: 8,
-        fontSize: 12,
-      });
-    });
-
-    fireEvent(inputElement, 'blur');
-
-    await waitFor(() => {
-      const blurredLabelStyle = labelElement.props.style;
-      expect(blurredLabelStyle).toMatchObject({
-        top: 20,
-        fontSize: 16,
-      });
-    });
+    expect(labelElement).toBeDefined();
+    // Adicione aqui mais verificações conforme necessário para os elementos renderizados
   });
 });

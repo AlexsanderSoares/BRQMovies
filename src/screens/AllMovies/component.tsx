@@ -6,20 +6,35 @@ import { MovieCard } from '../../components/MovieCard';
 import { fetchPopularMovies } from '../../services/tmdb';
 import { Movie } from './types';
 import { useNavigation } from '@react-navigation/native';
+import usePopularMovies from './component.hook';
+import { Text } from 'react-native';
 
 
 const AllMovies: React.FC = () => {
-  const [movies, setMovies] = useState<Movie[]>([])
   const navigation = useNavigation()
 
-  const getMovies = async () => {
-    const moviesResponse = await fetchPopularMovies()
-    setMovies(moviesResponse) 
+  const { data: movies = [], isLoading, isError, error } = usePopularMovies();
+
+  if (isLoading) {
+    return (
+      <Container>
+        <Text>
+          Carregando...
+        </Text>
+      </Container>
+    );
   }
 
-  useEffect(() => {
-    getMovies()
-  }, [])
+  if (isError) {
+    return (
+      <Container>
+        <Text>
+          Ocorreu um erro
+        </Text>
+      </Container>
+    )
+  }
+
 
   const renderItem = ({ item }: {item: Movie}) => (
     <MovieCard onPress={() => navigation.navigate('Movie', {id: item.id})} image={item.poster_path}/>

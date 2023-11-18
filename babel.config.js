@@ -10,6 +10,6 @@ module.exports = {
       allowUndefined: true,
     }],
     'react-native-reanimated/plugin',
-    '@babel/plugin-transform-react-jsx'
+    ["@babel/plugin-transform-react-jsx", { "pragma":"h" }]
   ],
 };
