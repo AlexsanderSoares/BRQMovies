@@ -2,12 +2,12 @@ import styled from "styled-components/native";
 import Animated from 'react-native-reanimated';
 import { TextInput } from "react-native";
 
-export const Container = styled.View`
+export const Container = styled.View<{error: boolean}>`
   position: relative;
   justify-content: center;
   background-color: #2E2F33;
   border-bottom-width: 2px;
-  border-color: #fff;
+  border-color: ${props => props.error ? '#f00' : '#fff'};
   border-radius: 4px;
   flex-direction: row;
   align-items: center;

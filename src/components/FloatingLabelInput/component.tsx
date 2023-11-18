@@ -5,7 +5,7 @@ import {
 import {Container, Input, InputContainer, Label} from './styles';
 import { ComponentProps } from './types';
 
-const FloatingLabelInput = ({label, LeftIcon, RightIcon, ...props}: ComponentProps) => {
+const FloatingLabelInput = ({label, LeftIcon, RightIcon, error, ...props}: ComponentProps) => {
   const isFocused = useSharedValue(false);
 
   const labelStyle = useAnimatedStyle(() => {
@@ -24,7 +24,7 @@ const FloatingLabelInput = ({label, LeftIcon, RightIcon, ...props}: ComponentPro
   };
 
   return (
-    <Container>
+    <Container error={error}>
       {LeftIcon && <LeftIcon />}
       <InputContainer>
         <Label style={labelStyle}>{label}</Label>
