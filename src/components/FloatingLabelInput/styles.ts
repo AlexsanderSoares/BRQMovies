@@ -3,7 +3,6 @@ import Animated from 'react-native-reanimated';
 import { TextInput } from "react-native";
 
 export const Container = styled.View`
-  margin-top: 18px;
   position: relative;
   justify-content: center;
   background-color: #2E2F33;
