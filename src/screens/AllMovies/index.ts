@@ -1,0 +1,1 @@
+export {AllMovies} from './component'

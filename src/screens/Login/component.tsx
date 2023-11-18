@@ -1,16 +1,26 @@
 import React from 'react';
 import * as yup from 'yup';
-import { FloatingLabelInput } from '../../components/FloatingLabelInput';
-import { CleanIcon, PasswordIcon, UserIcon } from '../../assets/icons';
-import { LogoImage } from '../../assets/images';
-import { SubitButton } from '../../components/SubitButton';
-import { Container, ErrorMessageText, ForgotPasswordButton, ForgotPasswordText, ImageContainer, InputContainer } from './styles';
-import { useAuth } from '../../hooks/auth';
+import {FloatingLabelInput} from '../../components/FloatingLabelInput';
+import {CleanIcon, PasswordIcon, UserIcon} from '../../assets/icons';
+import {LogoImage} from '../../assets/images';
+import {SubitButton} from '../../components/SubitButton';
+import {
+  Container,
+  ErrorMessageText,
+  ForgotPasswordButton,
+  ForgotPasswordText,
+  ImageContainer,
+  InputContainer,
+} from './styles';
+import {useAuth} from '../../hooks/auth';
 import useLoginForm from './component.hook';
-import { Platform } from 'react-native';
+import {Platform} from 'react-native';
 
 const loginSchema = yup.object().shape({
-  username: yup.string().min(4, 'O nome de usuário deve ter no mínimo 4 caracteres').required('O nome é obrigatório'),
+  username: yup
+    .string()
+    .min(4, 'O nome de usuário deve ter no mínimo 4 caracteres')
+    .required('O nome é obrigatório'),
   password: yup
     .string()
     .matches(/^[0-9]+$/, 'A senha deve conter apenas números')
@@ -19,8 +29,8 @@ const loginSchema = yup.object().shape({
 });
 
 const LoginScreen: React.FC = () => {
-  const { login } = useAuth();
-  const { formik, handleLogin } = useLoginForm();
+  const {login} = useAuth();
+  const {formik, handleLogin} = useLoginForm();
 
   return (
     <Container behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -33,7 +43,9 @@ const LoginScreen: React.FC = () => {
           onChangeText={formik.handleChange('username')}
           value={formik.values.username}
           LeftIcon={() => <UserIcon />}
-          RightIcon={() => <CleanIcon onPress={() => formik.setFieldValue('username', '')} />}
+          RightIcon={() => (
+            <CleanIcon onPress={() => formik.setFieldValue('username', '')} />
+          )}
           error={!!formik.errors.username}
         />
         {formik.touched.username && formik.errors.username ? (
@@ -46,7 +58,9 @@ const LoginScreen: React.FC = () => {
           onChangeText={formik.handleChange('password')}
           value={formik.values.password}
           LeftIcon={() => <PasswordIcon />}
-          RightIcon={() => <CleanIcon onPress={() => formik.setFieldValue('password', '')} />}
+          RightIcon={() => (
+            <CleanIcon onPress={() => formik.setFieldValue('password', '')} />
+          )}
           secureTextEntry={true}
           keyboardType="numeric"
           error={!!formik.errors.password}
@@ -67,4 +81,4 @@ const LoginScreen: React.FC = () => {
   );
 };
 
-export { LoginScreen };
+export {LoginScreen};
