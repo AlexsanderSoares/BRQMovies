@@ -1,13 +1,20 @@
 import React from 'react';
 
 import { Container } from './styles';
+import { useRoute } from '@react-navigation/native';
+import { StatusBar } from 'react-native';
 
-const Movie: React.FC = () => {
+const MovieScreen: React.FC = () => {
+  const route = useRoute()
+  console.log(route.params?.id)
   return (
-    <Container>
+    <>
+      <StatusBar translucent backgroundColor="transparent" />
+      <Container>
 
-    </Container>
+      </Container>
+    </>
   );
 }
 
-export {Movie};
+export {MovieScreen};

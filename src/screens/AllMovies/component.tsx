@@ -5,10 +5,12 @@ import { Container } from './styles';
 import { MovieCard } from '../../components/MovieCard';
 import { fetchPopularMovies } from '../../services/tmdb';
 import { Movie } from './types';
+import { useNavigation } from '@react-navigation/native';
 
 
 const AllMovies: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([])
+  const navigation = useNavigation()
 
   const getMovies = async () => {
     const moviesResponse = await fetchPopularMovies()
@@ -20,7 +22,7 @@ const AllMovies: React.FC = () => {
   }, [])
 
   const renderItem = ({ item }: {item: Movie}) => (
-    <MovieCard onPress={() => console.log(item.id)} image={item.poster_path}/>
+    <MovieCard onPress={() => navigation.navigate('Movie', {id: item.id})} image={item.poster_path}/>
   )
 
   return (

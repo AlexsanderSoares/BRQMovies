@@ -1,1 +1,1 @@
-export {Movie} from './component'
+export {MovieScreen} from './component'
