@@ -1,12 +1,13 @@
 import React from 'react';
 
 import { BackgroundImage, Container } from './styles';
+import { API_URL_IMAGES } from '@env';
 
-const MovieCard: React.FC = () => {
+const MovieCard: React.FC<{image: string, onPress: () => void}> = ({image, onPress}) => {
   return (
-    <Container>
+    <Container onPress={onPress}>
       <BackgroundImage
-        source={{ uri: 'https://sm.ign.com/t/ign_br/screenshot/default/jw4-2025x3000-online-character-1sht-keanu-v2_gfrq.960.jpg' }}
+        source={{ uri: `${API_URL_IMAGES}${image}`}}
         resizeMode="cover"
       />
     </Container>
