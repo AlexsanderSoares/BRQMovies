@@ -4,10 +4,15 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LoginScreen } from './screens/Login/component';
 import { HomeScreen } from './screens/Home/component';
 import { OptionsIcon } from './assets/icons';
+import { StatusBar } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
+  
+  StatusBar.setBarStyle('light-content');
+  StatusBar.setBackgroundColor('#16171B');
+
   return (
     <NavigationContainer>
       <Stack.Navigator 

@@ -6,4 +6,11 @@ export const Container = styled.View`
     background-color: #fff;
     border-radius: 8px;
     margin: 10px;
+    overflow: hidden; 
+`;
+
+export const BackgroundImage = styled.ImageBackground`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 `;

@@ -9,7 +9,7 @@ const AllMovies: React.FC = () => {
   return (
     <Container>
       <FlashList
-        data={[1,2,3,4, 5, 6]}
+        data={[1,2,3,4, 5, 6, 7]}
         renderItem={() => <MovieCard/>}
         numColumns={2}
       />
