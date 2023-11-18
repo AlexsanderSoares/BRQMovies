@@ -29,6 +29,7 @@ const AllMovies: React.FC = () => {
         data={movies}
         renderItem={renderItem}
         numColumns={2}
+        estimatedItemSize={100}
       />
     </Container>
   );

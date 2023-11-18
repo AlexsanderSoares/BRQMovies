@@ -1,6 +1,7 @@
 import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {AllMovies} from '../screens/AllMovies';
+import { FavoritMovies } from '../screens/FavoritMovies';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -27,7 +28,7 @@ const TopTabRoutes = () => {
       <Tab.Screen
         name="Login2"
         options={{title: 'Filmes Favoritos'}}
-        component={AllMovies}
+        component={FavoritMovies}
       />
     </Tab.Navigator>
   );
