@@ -6,7 +6,7 @@ import { Heart } from '../../assets/icons';
 
 const FavoriteButton: React.FC<Props> = ({ scrolled }) => {
   return (
-    <Container scrolled={scrolled}>
+    <Container scrolled={scrolled} testID="favorite-button-container">
         <Heart/>
     </Container>
   );

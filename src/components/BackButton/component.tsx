@@ -12,7 +12,7 @@ const BackButton = () => {
   };
 
   return (
-    <TouchableOpacity onPress={handlePress}>
+    <TouchableOpacity onPress={handlePress} testID="backButton">
         <BackButtonWrapper>
             <Arrow/>
         </BackButtonWrapper>

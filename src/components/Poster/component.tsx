@@ -6,10 +6,12 @@ import { Props } from './types';
 
 const Poster: React.FC<Props> = ({ image }) => {
   return (
-    <Container>
+    <Container testID="poster-container">
       <BackgroundImage 
         source={{ uri: `${API_URL_IMAGES}${image}`}}
-        resizeMode="cover"/>
+        resizeMode="cover"
+        testID="poster-background-image"
+      />
     </Container>
   );
 }

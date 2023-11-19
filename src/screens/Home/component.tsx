@@ -5,8 +5,8 @@ import { TopTabRoutes } from '../../routes/TopTabRoutes';
 
 const HomeScreen: React.FC = () => {
   return (
-    <Container>
-      <TopTabRoutes/>
+    <Container testID="home-screen-container">
+      <TopTabRoutes testID="top-tab-routes"/>
     </Container>
   );
 }

@@ -24,7 +24,7 @@ const FloatingLabelInput = ({label, LeftIcon, RightIcon, error, ...props}: Compo
   };
 
   return (
-    <Container error={error}>
+    <Container error={error} testID={error ? 'floating-label-input-container-error' : 'floating-label-input-container'}>
       {LeftIcon && <LeftIcon />}
       <InputContainer>
         <Label style={labelStyle}>{label}</Label>

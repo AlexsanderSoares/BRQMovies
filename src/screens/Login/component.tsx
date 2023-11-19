@@ -29,7 +29,7 @@ const loginSchema = yup.object().shape({
 });
 
 const LoginScreen: React.FC = () => {
-  const {login} = useAuth();
+
   const {formik, handleLogin} = useLoginForm();
 
   return (

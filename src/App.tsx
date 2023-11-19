@@ -1,14 +1,15 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {QueryClient, QueryClientProvider} from 'react-query';
+import { FavoriteButton } from './components/FavoriteButton';
+
 import {LoginScreen} from './screens/Login/component';
 import {HomeScreen} from './screens/Home/component';
 import {OptionsIcon} from './assets/icons';
 import {StatusBar} from 'react-native';
 import {MovieScreen} from './screens/Movie';
 import {BackButton} from './components/BackButton';
-import {QueryClient, QueryClientProvider} from 'react-query';
-import { FavoriteButton } from './components/FavoriteButton';
 
 const Stack = createNativeStackNavigator();
 

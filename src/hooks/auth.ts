@@ -7,10 +7,6 @@ const mmkv = new MMKV()
 const useAuth = () => {
   const [token, setToken] = useState(mmkv.getString('token'));
 
-  const validateLogin = () => {
-    
-  }
-
   const login = async ({username, password} : {username: string, password: string}) => {
     try {
       const token = await signIn(username, password);

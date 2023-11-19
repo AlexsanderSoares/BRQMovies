@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { FlashList } from "@shopify/flash-list";
 
 import { Container } from './styles';
 import { MovieCard } from '../../components/MovieCard';
-import { fetchPopularMovies } from '../../services/tmdb';
 import { Movie } from './types';
 import { useNavigation } from '@react-navigation/native';
 import usePopularMovies from './component.hook';

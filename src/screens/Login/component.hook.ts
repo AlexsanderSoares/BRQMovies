@@ -21,7 +21,7 @@ const useLoginForm = () => {
       password: '',
     },
     validationSchema: loginSchema,
-    onSubmit: async (values) => {
+    onSubmit: async (values: {username: string, password: string}) => {
       if (formik.isValid) {
         const isAuth = await login({username: values.username, password: values.password})
 
