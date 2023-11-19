@@ -4,10 +4,13 @@ import { FlashList } from "@shopify/flash-list";
 import { Container } from './styles';
 import { MovieCard } from '../../components/MovieCard';
 import { Movie } from './types';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../../routes/types';
 
 
 const FavoritMovies: React.FC = () => {
-  const [movies, setMovies] = useState<Movie[]>([
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>()
+  const [movies, _] = useState<Movie[]>([
     {
       adult: false,
       backdrop_path: "/fm6KqXpk3M2HVveHwCrBSSBaO0V.jpg",
@@ -69,7 +72,7 @@ const FavoritMovies: React.FC = () => {
   ])
 
   const renderItem = ({ item }: {item: Movie}) => (
-    <MovieCard onPress={() => console.log(item.id)} image={item.poster_path} />
+    <MovieCard onPress={() => navigation.navigate('Movie', {id: item.id})} image={item.poster_path} />
   )
 
   return (
