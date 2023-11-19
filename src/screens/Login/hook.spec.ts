@@ -1,19 +1,45 @@
-import { renderHook, act } from '@testing-library/react-hooks';
+import { act, renderHook } from '@testing-library/react-hooks';
 import useLoginForm from './component.hook';
 
+jest.mock('@react-navigation/native', () => ({
+  useNavigation: jest.fn(),
+}));
+
+// Mock do hook useAuth
+jest.mock('../../hooks/auth', () => ({
+  useAuth: jest.fn(),
+}));
+
 describe('useLoginForm', () => {
-  it('should submit valid form', async () => {
+  const mockLogin = jest.fn(); // Mock da função login
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+
+    // Simulando o retorno do hook useAuth
+    require('../../hooks/auth').useAuth.mockReturnValue({
+      login: mockLogin,
+    });
+  });
+
+  it('deve chamar login quando o formulário for submetido com dados válidos', async () => {
     const { result } = renderHook(() => useLoginForm());
 
-    const { formik, handleLogin } = result.current;
-
+    // Simula a validação do formulário com dados válidos
     act(() => {
-      formik.setValues({ username: 'user123', password: '1234' });
+      result.current.formik.values.username = 'usuarioteste';
+      result.current.formik.values.password = '123';
     });
 
+    // Chama a função handleLogin para simular a submissão do formulário
     await act(async () => {
-      await handleLogin();
+      await result.current.handleLogin();
     });
 
+    // Verifica se a função login foi chamada corretamente
+    expect(mockLogin).toHaveBeenCalledWith({
+      username: 'usuarioteste',
+      password: '123',
+    });
   });
 });

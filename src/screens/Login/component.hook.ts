@@ -1,14 +1,14 @@
+// useLoginForm.js
+
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useAuth } from '../../hooks/auth';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../routes/types';
-import { CommonActions } from '@react-navigation/native';
 
 const useLoginForm = () => {
-
-  const {login} = useAuth()
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>()
+  const { login } = useAuth();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const loginSchema = yup.object().shape({
     username: yup.string().min(4, 'O nome de usuário deve ter no mínimo 4 caracteres').required('O nome de usuário é obrigatório'),
@@ -26,15 +26,15 @@ const useLoginForm = () => {
     },
     validationSchema: loginSchema,
     onSubmit: async (values: {username: string, password: string}) => {
-      if (formik.isValid) {
-        const isAuth = await login({username: values.username, password: values.password})
+      const isAuth = await login({username: values.username, password: values.password});
 
-        if(isAuth){
-          navigation.reset({
-            index: 0,
-            routes: [{ name: 'App' }],
-          })
-        }
+      if (isAuth) {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'App' }],
+        });
+      }else{
+        formik.setErrors({ password: 'Você não tem permissão para acessar.' });
       }
     },
   });

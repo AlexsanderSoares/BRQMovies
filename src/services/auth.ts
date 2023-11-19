@@ -3,7 +3,7 @@ const signIn = (user: string, password: string): Promise<string> => {
         if(user === 'user' && password === '123')
             return resolve('82PjfFuIi58gPSXwfR3cPBbvwXEwBWhLm1KS8Og8gSilOp0tD0XMijpcZlweSfEY')
 
-        return reject('Ivalid Credentials')
+        return reject('Invalid Credentials')
     })
 }
 
