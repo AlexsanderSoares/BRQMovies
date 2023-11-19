@@ -1,3 +1,4 @@
+import { Animated } from "react-native";
 import styled from "styled-components/native";
 
 export const Container = styled.ScrollView`
@@ -45,4 +46,39 @@ export const SinopseText = styled.Text`
     line-height: 24px;
     font-weight: 400;
     color: #FFF;
+`;
+
+export const Header = styled(Animated.View)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  z-index: 1;
+  align-items: center;
+  background-color: #2E2F33;
+`;
+
+export const HeaderButtons = styled(Animated.View)`
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  z-index: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const HeaderContent = styled(Animated.View)`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const HeaderText = styled.Text`
+  font-size: 24px;
+  margin-top: 15px;
+  color: white; /* Cor do texto do cabeçalho */
 `;

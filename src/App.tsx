@@ -32,10 +32,7 @@ function App() {
             name="Movie"
             component={MovieScreen}
             options={{
-              headerTitle: '',
-              headerTransparent: true,
-              headerLeft: () => <BackButton />,
-              headerRight: () => <FavoriteButton scrolled={false}/>,
+              headerShown: false
             }}
           />
           <Stack.Screen

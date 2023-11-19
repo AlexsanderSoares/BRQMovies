@@ -2,9 +2,10 @@ import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { BackButtonWrapper } from './styles';
-import { Arrow } from '../../assets/icons';
+import { Arrow, ArrowOrange } from '../../assets/icons';
+import { Props } from './types';
 
-const BackButton = () => {
+const BackButton: React.FC<Props> = ({changeColor}) => {
   const navigation = useNavigation();
 
   const handlePress = () => {
@@ -12,9 +13,9 @@ const BackButton = () => {
   };
 
   return (
-    <TouchableOpacity onPress={handlePress} testID="backButton">
+    <TouchableOpacity onPress={handlePress} testID="backButton" >
         <BackButtonWrapper>
-            <Arrow/>
+            {changeColor ? <ArrowOrange/> : <Arrow/>}
         </BackButtonWrapper>
     </TouchableOpacity>
   );

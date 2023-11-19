@@ -4,9 +4,9 @@ import { Container } from './styles';
 import { Props } from './types';
 import { Heart } from '../../assets/icons';
 
-const FavoriteButton: React.FC<Props> = ({ scrolled }) => {
+const FavoriteButton: React.FC<Props> = ({ changeColor }) => {
   return (
-    <Container scrolled={scrolled} testID="favorite-button-container">
+    <Container changeColor={changeColor} testID="favorite-button-container">
         <Heart/>
     </Container>
   );

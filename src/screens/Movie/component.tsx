@@ -1,7 +1,7 @@
-import React from 'react';
-import { StatusBar, Text } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { Animated, StatusBar, Text } from 'react-native';
 import { useRoute } from '@react-navigation/native';
-import { Container, InfoCardsContainer, InfoCardsRow } from './styles';
+import { Container, Header, HeaderButtons, HeaderContent, HeaderText, InfoCardsContainer, InfoCardsRow } from './styles';
 import { Poster } from '../../components/Poster';
 import { InfoMovie, SinopseContainer, SinopseTitle, SinopseText, Title } from './styles';
 import { InfoCard } from '../../components/InfoCard';
@@ -9,12 +9,24 @@ import { Calendar, HeartOrange, Notification, Star } from '../../assets/icons';
 import useMovieDetails from './component.hook';
 import { RouteParams } from './types';
 import { convertDateToBrazilianFormat } from '../../utils/covertDate';
+import { BackButton } from '../../components/BackButton';
+import { FavoriteButton } from '../../components/FavoriteButton';
 
 const MovieScreen: React.FC = () => {
   const route = useRoute();
 
-  const params = route.params as RouteParams
+  const [buttonChangeColor, setButtonChangeColor] = useState(false);
 
+  const scrollY = useRef(new Animated.Value(0)).current;
+
+  const headerOpacity = scrollY.interpolate({
+    inputRange: [0, 100],
+    outputRange: [0, 1],
+    extrapolate: 'clamp',
+  });
+
+  const params = route.params as RouteParams
+  
   const { data, isLoading, isError } = useMovieDetails(params.id);
 
   if (isLoading) {
@@ -33,10 +45,38 @@ const MovieScreen: React.FC = () => {
     );
   }
 
+  useEffect(() => {
+    const listenerId = headerOpacity.addListener(({ value }) => {
+      if (value === 1) 
+        return setButtonChangeColor(true);
+  
+        setButtonChangeColor(false);
+    });
+
+    return () => {
+      headerOpacity.removeListener(listenerId);
+    };
+  }, [headerOpacity]);
+
   return (
     <>
       <StatusBar translucent backgroundColor="transparent" />
-      <Container>
+        <Header  style={{ opacity: headerOpacity }}>
+          <HeaderContent style={{ opacity: headerOpacity }}>
+            <HeaderText>{data.original_title}</HeaderText>
+          </HeaderContent>
+        </Header>
+        <HeaderButtons>
+          <BackButton changeColor={buttonChangeColor} />
+          <FavoriteButton changeColor={buttonChangeColor} />
+        </HeaderButtons>
+      <Container
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+            { useNativeDriver: false }
+          )}
+          scrollEventThrottle={16}
+      >
         <Poster image={data.poster_path}/>
         <InfoMovie>
           <Title>
