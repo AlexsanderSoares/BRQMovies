@@ -1,5 +1,4 @@
 import React from 'react';
-import * as yup from 'yup';
 import {FloatingLabelInput} from '../../components/FloatingLabelInput';
 import {CleanIcon, PasswordIcon, UserIcon} from '../../assets/icons';
 import {LogoImage} from '../../assets/images';
@@ -12,21 +11,8 @@ import {
   ImageContainer,
   InputContainer,
 } from './styles';
-import {useAuth} from '../../hooks/auth';
 import useLoginForm from './component.hook';
 import {Platform} from 'react-native';
-
-const loginSchema = yup.object().shape({
-  username: yup
-    .string()
-    .min(4, 'O nome de usuário deve ter no mínimo 4 caracteres')
-    .required('O nome é obrigatório'),
-  password: yup
-    .string()
-    .matches(/^[0-9]+$/, 'A senha deve conter apenas números')
-    .min(3, 'A senha deve ter no mínimo 3 dígitos')
-    .required('A senha é obrigatória'),
-});
 
 const LoginScreen: React.FC = () => {
 

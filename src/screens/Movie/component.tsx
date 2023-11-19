@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { Animated, StatusBar, Text } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { Container, Header, HeaderButtons, HeaderContent, HeaderText, InfoCardsContainer, InfoCardsRow } from './styles';
@@ -7,15 +7,15 @@ import { InfoMovie, SinopseContainer, SinopseTitle, SinopseText, Title } from '.
 import { InfoCard } from '../../components/InfoCard';
 import { Calendar, HeartOrange, Notification, Star } from '../../assets/icons';
 import useMovieDetails from './component.hook';
-import { RouteParams } from './types';
 import { convertDateToBrazilianFormat } from '../../utils/covertDate';
 import { BackButton } from '../../components/BackButton';
 import { FavoriteButton } from '../../components/FavoriteButton';
+import { MovieScreenRouteProp } from '../../routes/types';
 
 const MovieScreen: React.FC = () => {
   
-  const route = useRoute();
-  const params = route.params as RouteParams;
+  const route = useRoute<MovieScreenRouteProp>();
+  const params = route.params;
   const { data, isLoading, isError, buttonChangeColor, headerOpacity, scrollY } = useMovieDetails(params.id);
 
   if (isLoading) {

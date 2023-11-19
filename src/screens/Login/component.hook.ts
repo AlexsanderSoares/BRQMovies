@@ -1,10 +1,13 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useAuth } from '../../hooks/auth';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../../routes/types';
 
 const useLoginForm = () => {
 
   const {login} = useAuth()
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>()
 
   const loginSchema = yup.object().shape({
     username: yup.string().min(4, 'O nome de usuário deve ter no mínimo 4 caracteres').required('O nome de usuário é obrigatório'),
@@ -26,7 +29,7 @@ const useLoginForm = () => {
         const isAuth = await login({username: values.username, password: values.password})
 
         if(isAuth)
-          console.log('logado')
+          navigation.navigate('App')
       }
     },
   });

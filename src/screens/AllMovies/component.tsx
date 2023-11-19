@@ -4,13 +4,14 @@ import { FlashList } from "@shopify/flash-list";
 import { Container } from './styles';
 import { MovieCard } from '../../components/MovieCard';
 import { Movie } from './types';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import usePopularMovies from './component.hook';
 import { Text } from 'react-native';
+import { RootStackParamList } from '../../routes/types';
 
 
 const AllMovies: React.FC = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>()
 
   const { data: movies = [], isLoading, isError, error } = usePopularMovies();
 

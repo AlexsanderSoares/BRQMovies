@@ -2,10 +2,11 @@ import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {AllMovies} from '../screens/AllMovies';
 import { FavoritMovies } from '../screens/FavoritMovies';
+import { TopTabRoutesProps } from './types';
 
 const Tab = createMaterialTopTabNavigator();
 
-const TopTabRoutes = () => {
+const TopTabRoutes: React.FC<TopTabRoutesProps> = () => {
   return (
     <Tab.Navigator
       screenOptions={{
