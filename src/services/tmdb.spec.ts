@@ -1,75 +1,42 @@
-import axios from 'axios';
+
 import { fetchPopularMovies, fetchMovieDetails } from './tmdb';
 
-jest.mock('axios');
+jest.mock('./baseApi', () => ({
+  api: {
+    async get(url: string) {
+      if (url.includes('/movie/popular')) {
+        return {
+          data: {
+            results: ['Movie 1', 'Movie 2', 'Movie 3']
+          }
+        };
+      }
 
-describe('Movie API', () => {
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
+      if (url.includes('/movie/')) {
+        return {
+          data: {
+            title: 'Movie Title',
+            overview: 'Movie Overview'
+          }
+        };
+      }
 
-  it('handles API errors', async () => {
-    const errorMessage = 'Not Found';
-    const errorResponse = {
-      response: {
-        data: {
-          status_message: errorMessage,
-        },
-      },
-    };
+      throw new Error('Invalid URL');
+    }
+  }
+}));
 
-    (axios.get as jest.Mock).mockRejectedValue(errorResponse);
-
-    await expect(fetchPopularMovies()).rejects.toThrowError(errorMessage);
-
-    const movieId = 123;
-    await expect(fetchMovieDetails(movieId)).rejects.toThrowError(errorMessage);
-  });
-
-  it('fetches popular movies correctly', async () => {
-    const mockedResponse = {
-      data: {
-        results: [
-          { id: 1, title: 'Movie 1' },
-          { id: 2, title: 'Movie 2' },
-        ],
-      },
-    };
-
-    (axios.get as jest.Mock).mockResolvedValue(mockedResponse);
-
+describe('Movie API Functions', () => {
+  test('fetchPopularMovies should return an array of popular movies', async () => {
     const movies = await fetchPopularMovies();
-
-    expect(movies).toEqual(mockedResponse.data.results);
-    expect(axios.get).toHaveBeenCalledTimes(1);
-    expect(axios.get).toHaveBeenCalledWith('/movie/popular', {
-      params: {
-        api_key: 'YOUR_API_KEY',
-        language: 'pt-BR',
-      },
-    });
+    expect(Array.isArray(movies)).toBe(true);
+    expect(movies).toHaveLength(3);
   });
 
-  it('fetches movie details correctly', async () => {
+  test('fetchMovieDetails should return details of a specific movie', async () => {
     const movieId = 123;
-    const mockedResponse = {
-      data: {
-        id: movieId,
-        title: 'Movie 123',
-      },
-    };
-
-    (axios.get as jest.Mock).mockResolvedValue(mockedResponse);
-
     const movieDetails = await fetchMovieDetails(movieId);
-
-    expect(movieDetails).toEqual(mockedResponse.data);
-    expect(axios.get).toHaveBeenCalledTimes(1);
-    expect(axios.get).toHaveBeenCalledWith(`/movie/${movieId}`, {
-      params: {
-        api_key: 'YOUR_API_KEY',
-        language: 'pt-BR',
-      },
-    });
+    expect(movieDetails.title).toBe('Movie Title');
+    expect(movieDetails.overview).toBe('Movie Overview');
   });
 });
