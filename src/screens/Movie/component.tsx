@@ -14,9 +14,7 @@ import { FavoriteButton } from '../../components/FavoriteButton';
 
 const MovieScreen: React.FC = () => {
   const route = useRoute();
-
   const [buttonChangeColor, setButtonChangeColor] = useState(false);
-
   const scrollY = useRef(new Animated.Value(0)).current;
 
   const headerOpacity = scrollY.interpolate({
@@ -25,9 +23,22 @@ const MovieScreen: React.FC = () => {
     extrapolate: 'clamp',
   });
 
-  const params = route.params as RouteParams
-  
+  const params = route.params as RouteParams;
   const { data, isLoading, isError } = useMovieDetails(params.id);
+
+  useEffect(() => {
+    const listenerId = headerOpacity.addListener(({ value }) => {
+      if (value === 1) {
+        setButtonChangeColor(true);
+      } else {
+        setButtonChangeColor(false);
+      }
+    });
+
+    return () => {
+      headerOpacity.removeListener(listenerId);
+    };
+  }, [headerOpacity]);
 
   if (isLoading) {
     return (
@@ -44,19 +55,6 @@ const MovieScreen: React.FC = () => {
       </Container>
     );
   }
-
-  useEffect(() => {
-    const listenerId = headerOpacity.addListener(({ value }) => {
-      if (value === 1) 
-        return setButtonChangeColor(true);
-  
-        setButtonChangeColor(false);
-    });
-
-    return () => {
-      headerOpacity.removeListener(listenerId);
-    };
-  }, [headerOpacity]);
 
   return (
     <>

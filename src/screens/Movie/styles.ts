@@ -80,5 +80,6 @@ export const HeaderContent = styled(Animated.View)`
 export const HeaderText = styled.Text`
   font-size: 24px;
   margin-top: 15px;
-  color: white; /* Cor do texto do cabeçalho */
+  color: #fff;
+  text-align: center;
 `;
