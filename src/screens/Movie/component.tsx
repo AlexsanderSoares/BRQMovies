@@ -13,32 +13,10 @@ import { BackButton } from '../../components/BackButton';
 import { FavoriteButton } from '../../components/FavoriteButton';
 
 const MovieScreen: React.FC = () => {
+  
   const route = useRoute();
-  const [buttonChangeColor, setButtonChangeColor] = useState(false);
-  const scrollY = useRef(new Animated.Value(0)).current;
-
-  const headerOpacity = scrollY.interpolate({
-    inputRange: [0, 100],
-    outputRange: [0, 1],
-    extrapolate: 'clamp',
-  });
-
   const params = route.params as RouteParams;
-  const { data, isLoading, isError } = useMovieDetails(params.id);
-
-  useEffect(() => {
-    const listenerId = headerOpacity.addListener(({ value }) => {
-      if (value === 1) {
-        setButtonChangeColor(true);
-      } else {
-        setButtonChangeColor(false);
-      }
-    });
-
-    return () => {
-      headerOpacity.removeListener(listenerId);
-    };
-  }, [headerOpacity]);
+  const { data, isLoading, isError, buttonChangeColor, headerOpacity, scrollY } = useMovieDetails(params.id);
 
   if (isLoading) {
     return (
