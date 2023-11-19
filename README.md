@@ -1,79 +1,23 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Projeto BRQMovies
 
-# Getting Started
+Este projeto React Native foi desenvolvido com a utilização de diferentes bibliotecas e ferramentas para facilitar e aprimorar o desenvolvimento. Aqui estão algumas das principais bibliotecas e suas funcionalidades no contexto deste projeto:
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Formik
 
-## Step 1: Start the Metro Server
+O Formik foi utilizada neste projeto para simplificar o gerenciamento de estados, a validação de formulários, a manipulação de valores dos inputs e o tratamento de erros de validação. Ele proporciona uma maneira conveniente e eficiente de lidar com formulários em React Native.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Yup e Formik
 
-To start Metro, run the following command from the _root_ of your React Native project:
+No contexto deste projeto, o Yup, uma biblioteca de validação de esquemas, foi integrada com o Formik para validar os dados inseridos no formulário de Login. Essa integração aproveitou a compatibilidade e funcionalidades de ambas as bibliotecas, permitindo uma validação detalhada dos dados do formulário.
 
-```bash
-# using npm
-npm start
+## React Navigation
 
-# OR using Yarn
-yarn start
-```
+A biblioteca React Navigation foi empregada neste projeto para simplificar e flexibilizar o gerenciamento da navegação entre telas do aplicativo. Com ela, foi possível criar uma experiência de navegação intuitiva e fluida para os usuários do aplicativo.
 
-## Step 2: Start your Application
+## Styled Components
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+Neste projeto, Styled Components foi utilizada para criar estilos reutilizáveis para os componentes. Essa abordagem ofereceu uma maneira mais intuitiva e eficiente na gestão de estilos em comparação com o método convencional de manipulação de folhas de estilo, tornando mais simples a estilização dos componentes.
 
-### For Android
+## React Query
 
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+O React Query foi empregada neste projeto para eficientemente gerenciar o estado dos dados, principalmente para integrar com APIs e manipular operações assíncronas. Ele simplificou o processo de busca e atualização de dados, garantindo um gerenciamento eficaz do estado da aplicação.
