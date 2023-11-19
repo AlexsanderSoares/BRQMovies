@@ -7,13 +7,17 @@ type RootStackParamList = {
   Home: undefined;
   AllMovies: undefined;
   FavoriteMovies: undefined;
-  Movie: {
-    id: number;
-  };
+  Movie: MovieParams;
+};
+
+type RouteList = 'App' | 'Auth' | 'Login' | 'Home' | 'AllMovies' | 'FavoriteMovies' | 'Movie';
+
+type MovieParams = {
+  id: number;
 };
 
 type TopTabRoutesProps = {testID?: string}; 
 
 type MovieScreenRouteProp = RouteProp<RootStackParamList, 'Movie'>;
 
-export type { RootStackParamList, MovieScreenRouteProp, TopTabRoutesProps };
+export type { RootStackParamList, MovieScreenRouteProp, TopTabRoutesProps, RouteList };

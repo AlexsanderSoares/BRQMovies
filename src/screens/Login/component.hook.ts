@@ -3,6 +3,7 @@ import * as yup from 'yup';
 import { useAuth } from '../../hooks/auth';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../routes/types';
+import { CommonActions } from '@react-navigation/native';
 
 const useLoginForm = () => {
 
@@ -28,8 +29,12 @@ const useLoginForm = () => {
       if (formik.isValid) {
         const isAuth = await login({username: values.username, password: values.password})
 
-        if(isAuth)
-          navigation.navigate('App')
+        if(isAuth){
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'App' }],
+          })
+        }
       }
     },
   });

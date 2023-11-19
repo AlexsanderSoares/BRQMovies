@@ -15,7 +15,6 @@ import useLoginForm from './component.hook';
 import {Platform} from 'react-native';
 
 const LoginScreen: React.FC = () => {
-
   const {formik, handleLogin} = useLoginForm();
 
   return (
