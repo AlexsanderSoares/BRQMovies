@@ -18,12 +18,3 @@ export const fetchMovieDetails = async (movieId: number) => {
         throw new Error(error.response.data.status_message);
     }
 };
-
-export const fetchFavoritMovies = async (movieId: number) => {
-    try {
-        const response = await api.get(`/account/null/favorite/movies`);
-        return response.data;
-    } catch (error: any) {
-        throw new Error(error.response.data.status_message);
-    }
-};
